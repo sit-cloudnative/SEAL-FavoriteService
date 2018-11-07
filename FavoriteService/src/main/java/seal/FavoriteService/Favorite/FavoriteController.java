@@ -13,13 +13,13 @@ public class FavoriteController {
     @Autowired
     private FavoriteService favoriteService;
 
-    @GetMapping("/user/{user_id:[\\s]}/favorites")
+    @GetMapping("/favorites/user/{user_id:[\\s]}")
     public ResponseEntity<List<Favorite>> getAllFavorite(@PathVariable(name = "user_id") String userId) {
         List<Favorite> favorites_object = favoriteService.getFavoriteByUserId(userId);
         return new ResponseEntity<List<Favorite>>(favorites_object, HttpStatus.OK);
     }
 
-    @PostMapping("/user/{user_id:[\\s]}/subject/{subject_id:[\\d]}/favorite")
+    @PostMapping("/favorite/user/{user_id:[\\s]}/subject/{subject_id:[\\d]}")
     public ResponseEntity<Favorite> createFavorite(@PathVariable(name = "user_id") String userId,
                                                    @PathVariable(name = "subject_id") int subjectId) {
         Favorite favorite_object = favoriteService.createFavorite(userId, subjectId);
